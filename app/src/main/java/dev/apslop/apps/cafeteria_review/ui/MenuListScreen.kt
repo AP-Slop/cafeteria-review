@@ -17,12 +17,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -52,13 +54,25 @@ fun MenuListScreen(
     menus: List<MenuItem>,
     reviews: List<Review>,
     onSelect: (MenuItem) -> Unit,
+    onClearAllReviews: () -> Unit,
 ) {
     var sortByRating by rememberSaveable { mutableStateOf(true) }
+    var showClearDialog by rememberSaveable { mutableStateOf(false) }
     val summaries = summarizeMenus(menus, reviews, sortByRating)
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(stringResource(R.string.app_name)) })
+            TopAppBar(
+                title = { Text(stringResource(R.string.app_name)) },
+                actions = {
+                    TextButton(
+                        onClick = { showClearDialog = true },
+                        enabled = reviews.isNotEmpty(),
+                    ) {
+                        Text(stringResource(R.string.clear_all))
+                    }
+                },
+            )
         },
     ) { innerPadding ->
         LazyColumn(
@@ -100,6 +114,31 @@ fun MenuListScreen(
                 MenuCard(summary = summary, onClick = { onSelect(summary.menu) })
             }
         }
+    }
+
+    if (showClearDialog) {
+        AlertDialog(
+            onDismissRequest = { showClearDialog = false },
+            title = { Text(stringResource(R.string.clear_all_confirm_title)) },
+            text = {
+                Text(stringResource(R.string.clear_all_confirm_message, reviews.size))
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showClearDialog = false
+                        onClearAllReviews()
+                    },
+                ) {
+                    Text(stringResource(R.string.clear_all_confirm_action))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showClearDialog = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            },
+        )
     }
 }
 
@@ -174,6 +213,7 @@ private fun MenuListPreview() {
             menus = SampleData.menus,
             reviews = SampleData.seedReviews(),
             onSelect = {},
+            onClearAllReviews = {},
         )
     }
 }

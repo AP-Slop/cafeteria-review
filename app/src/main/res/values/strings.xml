@@ -12,6 +12,10 @@
     <string name="back">戻る</string>
     <string name="write_review">レビューを書く</string>
     <string name="delete">削除</string>
+    <string name="clear_all">全削除</string>
+    <string name="clear_all_confirm_title">レビューをすべて削除しますか？</string>
+    <string name="clear_all_confirm_message">%1$d件のレビューと、添付された写真をこの端末から削除します。この操作は取り消せません。</string>
+    <string name="clear_all_confirm_action">すべて削除</string>
     <string name="editor_title">%1$s のレビュー</string>
     <string name="author_label">ニックネーム</string>
     <string name="comment_label">コメント</string>

@@ -59,6 +59,7 @@ fun AppRoot() {
             menus = menus,
             reviews = store.reviews,
             onSelect = { selectedMenuId = it.id },
+            onClearAllReviews = { store.clearAllReviews() },
         )
     } else {
         MenuDetailScreen(

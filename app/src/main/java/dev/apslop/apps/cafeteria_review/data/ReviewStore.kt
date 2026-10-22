@@ -53,6 +53,19 @@ class ReviewStore(private val context: Context) {
         }
     }
 
+    /** すべてのレビューと、それに紐づく写真ファイルを削除する。 */
+    fun clearAllReviews() {
+        if (reviews.isEmpty()) return
+        val photoPaths = reviews.mapNotNull { it.photoPath }
+        reviews.clear()
+        persist()
+        if (photoPaths.isNotEmpty()) {
+            scope.launch {
+                photoPaths.forEach { path -> runCatching { File(path).delete() } }
+            }
+        }
+    }
+
     fun setAuthorName(name: String) {
         val trimmed = name.trim().ifBlank { "ゲスト" }
         authorName = trimmed
