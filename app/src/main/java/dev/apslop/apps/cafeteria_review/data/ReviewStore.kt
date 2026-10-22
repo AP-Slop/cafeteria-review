@@ -53,7 +53,9 @@ class ReviewStore(private val context: Context) {
         }
     }
 
-    fun setAuthorName(name: String) {
+    // NOTE: `authorName` は var なので setAuthorName というセッターが自動生成される。
+    // 同名の関数を定義すると JVM シグネチャが衝突するため、別名にしている。
+    fun updateAuthorName(name: String) {
         val trimmed = name.trim().ifBlank { "ゲスト" }
         authorName = trimmed
         ProfilePrefs.setAuthorName(context, trimmed)

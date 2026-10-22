@@ -74,7 +74,7 @@ fun AppRoot() {
                 initialAuthor = store.authorName,
                 onDismiss = { showEditor = false },
                 onSubmit = { author, rating, comment, photoPath ->
-                    store.setAuthorName(author)
+                    store.updateAuthorName(author)
                     store.addReview(
                         Review(
                             id = UUID.randomUUID().toString(),
