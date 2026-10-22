@@ -7,6 +7,7 @@
     <string name="category_and_price">%1$s ・ %2$d円</string>
     <string name="average_with_count">%1$s (%2$d件)</string>
     <string name="no_review_short">まだレビューなし</string>
+    <string name="detail_title_with_count">%1$s (%2$d件)</string>
     <string name="reviews_title">レビュー (%1$d件)</string>
     <string name="no_reviews">まだレビューがありません。最初の1件を書いてみませんか？</string>
     <string name="back">戻る</string>

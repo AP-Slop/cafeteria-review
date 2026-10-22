@@ -55,7 +55,9 @@ fun MenuDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(menu.name) },
+                title = {
+                    Text(stringResource(R.string.detail_title_with_count, menu.name, reviews.size))
+                },
                 navigationIcon = {
                     TextButton(onClick = onBack) {
                         Text(stringResource(R.string.back))
