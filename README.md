@@ -10,6 +10,7 @@
 - 「レビューを書く」から **5段階の星・コメント・写真** を付けて投稿
 - 写真は端末のフォトピッカーから選択（権限リクエスト不要）。アプリ内に自動で縮小保存されます
 - ニックネームは次回以降も引き継がれ、自分のレビューは削除できます
+- 一覧画面右上の「全削除」から、投稿したレビューと写真をまとめて消せます（確認ダイアログ付き）
 
 ## 使い方
 
@@ -17,6 +18,7 @@
 2. 気になるメニューをタップしてレビューを読む
 3. 右下の「レビューを書く」からニックネーム・星・コメント・写真を入力して投稿
 4. 投稿したレビューはすぐに一覧と平均評価に反映されます
+5. すべて消したいときは一覧画面右上の「全削除」→ 確認ダイアログで「すべて削除」を選択
 
 ## データの保存場所
 
@@ -34,12 +36,12 @@ app/src/main/java/dev/apslop/apps/cafeteria_review/
   data/Models.kt               MenuItem / Review
   data/Ratings.kt              平均評価・星表示・一覧要約 (純粋関数)
   data/SampleData.kt           サンプルメニューと初期レビュー
-  data/ReviewStore.kt          レビューの状態管理と永続化
+  data/ReviewStore.kt          レビューの状態管理と永続化（追加・削除・全削除）
   data/ReviewStorage.kt        JSON ファイル入出力
   data/PhotoStore.kt           写真の取り込みと縮小
   data/ProfilePrefs.kt         ニックネームの保存
   ui/Theme.kt                  配色
-  ui/MenuListScreen.kt         メニュー一覧
+  ui/MenuListScreen.kt         メニュー一覧（並べ替え・全削除）
   ui/MenuDetailScreen.kt       メニュー詳細とレビュー一覧
   ui/ReviewEditorDialog.kt     レビュー投稿ダイアログ
   ui/PhotoImage.kt             端末内画像の読み込み表示
